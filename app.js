@@ -39,6 +39,9 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.use(routes);
 app.use(express.static(__dirname+ '/public'));
+app.use('*', function (req, res, next) {
+    res.redirect('/')
+});
 
 //catch all invalid urls to protect from database injections route ('/') catch all verbs
 app.listen(PORT, function(){
