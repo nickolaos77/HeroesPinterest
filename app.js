@@ -6,6 +6,7 @@ var express         = require('express'),
     passport        = require('passport'),
     bodyParser      = require('body-parser'),
     session         = require('express-session'),
+    MongoStore      = require('connect-mongo')(session),
     passportTwitter = require('./auth/twitter'),
     User            = require('./models/user'),
     PORT            = process.env.PORT || 3000,
@@ -27,9 +28,10 @@ mongoose.connect(url);
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(session({
-  secret: 'keyboard cat',
-  resave: true,
-  saveUninitialized: true
+  secret: 'The sun is cloudy',
+  store: new MongoStore({
+  url: process.env.MONGOLAB_URI      
+  })   
 }));
 app.use(passport.initialize());
 app.use(passport.session());
