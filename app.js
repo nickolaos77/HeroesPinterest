@@ -22,6 +22,7 @@ var handlebars      = require('express-handlebars').create({
             }
         }
     });
+console.log(url);
 mongoose.connect(url);
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
