@@ -1,7 +1,7 @@
 {{#each partials.imageContext}}
 <div class="grid-item" id={{_id}}>
       
-    <img src ='{{imageAdress}}' caption = 'hello world' onError="this.onerror=null; this.css('height', '156'); this.src='https://cdn.drawception.com/images/panels/2013/12-12/cec8g1fHxg-5.png';"/>
+    <img src ='{{imageAdress}}' caption = 'hello world' onError="this.onerror=null;  $(this).height(156); this.src='https://cdn.drawception.com/images/panels/2013/12-12/cec8g1fHxg-5.png';"/>
       <div class="caption back"> <!--  I am using two captions here-->
  
        <h5 style="text-align:center; font-weight:normal; padding:8px">{{description}}</h5>
