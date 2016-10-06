@@ -9,7 +9,7 @@ var express         = require('express'),
     passportTwitter = require('./auth/twitter'),
     User            = require('./models/user'),
     PORT            = process.env.PORT || 3000,
-    url             = process.env.MONGOLAB_URL,
+    url             = process.env.MONGOLAB_URI,
     routes          = require('./routes/index.js');
  
 var handlebars      = require('express-handlebars').create({
