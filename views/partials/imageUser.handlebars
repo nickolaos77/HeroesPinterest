@@ -1,0 +1,33 @@
+{{#each partials.imageUserContext}}
+
+<div class="grid-item" id={{_id}}>
+
+    <img src='{{imageAdress}}' caption='hello world' onError="this.onerror=null;this.src='images2/404-Hero.png';"/>
+    <div class="caption back">
+        <!--  I am using two captions here-->
+
+        <h5 style="text-align:center; font-weight:normal; padding:8px">{{description}}</h5>
+    </div>
+    <div class="caption back" style='overflow:auto;'>
+        <!-- without the overflow auto the div wasn't containing the image and the button-->
+        {{!-- this comment is invisible http://stackoverflow.com/questions/9784793/chrome-is-stretching-the-height-of-my-max-width-image --}}
+        <img class='img img-responsive pull-left' src='{{avatar}}' style=' max-height:40px; height:auto; width:auto'  />
+        {{!-- Super Important next line--}}
+        <form onsubmit="this.action = 'del/'+'{{_id}}' ;" method="POST"  style="display:inline">
+            <div class="form-group" style="display:inline">
+                <button class='btn btn-default  text-center' style='margin-left:23px; margin-top:3px'><i class="fa fa-times" aria-hidden="true"></i> </button>
+            </div>
+        </form>
+            <button class='btn btn-default pull-right' style='margin-top:3px'><i class="fa fa-star" aria-hidden="true"></i> </button>
+
+
+    </div>
+</div>
+
+{{/each}}
+
+{{!--http://stackoverflow.com/questions/2701041/how-to-set-form-action-through-javascript
+http://stackoverflow.com/questions/92720/jquery-javascript-to-replace-broken-images--}}
+
+
+ 
