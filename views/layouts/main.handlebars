@@ -136,6 +136,7 @@
     <script src="bower_components/masonry/dist/masonry.pkgd.min.js"></script>
     <script src="bower_components/imagesloaded/imagesloaded.pkgd.min.js"></script>
     <script>
+        function initializeMasonry (){
         var $grid = $('.grid').imagesLoaded(function () {
             $grid.masonry({
                 itemSelector: '.grid-item',
@@ -143,9 +144,17 @@
                 columnWidth: '.grid-sizer'
             });
         });
-        
+        }
+        initializeMasonry();
     </script>
-  
+    <script>
+    $('.pull-left').click(function () {
+    var parentID = $(this).attr("id");
+    $("div[class ='grid-item'][id!="+parentID+" ]").remove();   
+    initializeMasonry();      
+});  
+
+    </script>
 </body>
 
 </html>    

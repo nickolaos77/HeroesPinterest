@@ -1,14 +1,14 @@
 {{#each partials.imageContext}}
-<div class="grid-item" id={{_id}}>
+<div class="grid-item" id='{{imageUploader}}'>
       
     <img src ='{{imageAdress}}' caption = 'hello world' onError="this.onerror=null;  $(this).height(156); this.src='https://cdn.drawception.com/images/panels/2013/12-12/cec8g1fHxg-5.png';"/>
       <div class="caption back"> <!--  I am using two captions here-->
  
        <h5 style="text-align:center; font-weight:normal; padding:8px">{{description}}</h5>
       </div>
-          <div class="caption back" style='overflow:auto;' > <!-- without the overflow auto the div wasn't containing the image and the button-->
+      <div class="caption back" style='overflow:auto;' > <!-- without the overflow auto the div wasn't containing the image and the button-->
              {{!-- this comment is invisible http://stackoverflow.com/questions/9784793/chrome-is-stretching-the-height-of-my-max-width-image --}}
-              <img class='img img-responsive pull-left' src='{{avatar}}' style=' max-height:40px; height:auto; width:auto'   />   
+              <img class='img img-responsive pull-left' src='{{avatar}}' style=' max-height:40px; height:auto; width:auto'  id='{{imageUploader}}' />   
             <button  class='btn btn-default pull-right' style='margin-top:3px'><i class="fa fa-star" aria-hidden="true"></i> </button>
                   
 

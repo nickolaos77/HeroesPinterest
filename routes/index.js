@@ -6,26 +6,28 @@ var multer = require('multer');
 var upload = multer();
 var middleware = {
     querryTheDB: function(req, res, next){
-    var newCont = [];
-    User.find({ },'images', function (err, docs) {
+    User.find({ },'images someID', function (err, docs) {
     if (err) console.log(err);
-    
     var container=[]; 
     docs.forEach(function(elem){
-        container.push(elem.images );
-    });
-    // Flatten the array
-    container.forEach(function(elem){
-        elem.forEach(function(obj){
-            newCont.push(obj);
+       elem.images.forEach(function(image){
+          var newImage={
+            "imageUploader": elem.someID,
+            "avatar"       : image.avatar,
+            "description"  : image.description,
+            "imageAdress"  : image.imageAdress,
+            "_id"          : image._id       
+          }    
+           container.push(newImage); 
         })
-    }); 
+       });
 //    Due to the asynchronous access to the db if the following 3 lines 
 //    are outside of User.find function, newCont will be empty 
+    var newCont = container;
     if(!res.locals.partials) res.locals.partials = {};  
     res.locals.partials.imageContext =  newCont;
     next(); 
-    }); 
+    })
      },
     
     getSpecificUserPhotos : function(req, res, next){
@@ -51,8 +53,7 @@ var middleware = {
             return next();          
         }
         else {res.redirect('/')}
-    }
-    
+    }    
 }
 
 router.get('/auth/twitter', passportTwitter.authenticate('twitter'));
@@ -106,5 +107,6 @@ router.post('/del/:id', function(req,res){
         })
                            
 });
+
 
 module.exports = router;

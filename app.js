@@ -39,6 +39,8 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.use(routes);
 app.use(express.static(__dirname+ '/public'));
+// the router.all('*',function(req,res){}) in the index file didn't work as expected
+// to redirect all unhandled requests to the root
 app.use('*', function (req, res, next) {
     res.redirect('/')
 });
