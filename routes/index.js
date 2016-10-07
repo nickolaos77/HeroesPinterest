@@ -59,16 +59,16 @@ var middleware = {
 router.get('/auth/twitter', passportTwitter.authenticate('twitter'));
 
 router.get('/auth/twitter/callback',
-  passportTwitter.authenticate('twitter', { failureRedirect: '/login' }), 
+  passportTwitter.authenticate('twitter', { failureRedirect: '/' }), 
                 
   function(req, res) {
     // Successful authentication
     res.redirect('/');
   });
 
-router.get('/login', function(req, res, next) {
-   res.send('LOGGING IN WITH TWITTER FAILED')
-});
+//router.get('/login', function(req, res, next) {
+//   res.send('LOGGING IN WITH TWITTER FAILED, PLEASE TRY AGAIN')
+//});
 
 router.get('/logout', function(req,res){
     req.logout();

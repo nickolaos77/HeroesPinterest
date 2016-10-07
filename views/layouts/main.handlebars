@@ -148,7 +148,9 @@
         initializeMasonry();
     </script>
     <script>
-        {{!--http://stackoverflow.com/questions/743994/how-do-i-select-an-element-in-jquery-by-using-a-variable-for-the-id--}}    
+        {{!--http://stackoverflow.com/questions/5891840/how-to-use-javascript-variables-in-jquery-selectors
+        https://api.jquery.com/multiple-attribute-selector/
+        --}}    
     $('.pull-left').click(function () {
     var parentID = $(this).attr("id");
     $("div[class ='grid-item'][id!="+parentID+" ]").remove();   
