@@ -23,7 +23,8 @@ passport.use(new TwitterStrategy({
     };
 
     var options = {
-      upsert: true
+      upsert: true,
+	  new   : true
     };
 
     // update the user if s/he exists or add a new user //
