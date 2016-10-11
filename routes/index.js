@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 var passportTwitter = require('../auth/twitter');
-var multer = require('multer');
-var upload = multer();
 var middleware = {
     querryTheDB: function(req, res, next){
     User.find({ },'images someID', function (err, docs) {
@@ -79,7 +77,7 @@ router.get('/logout', function(req,res){
 router.get('/', middleware.querryTheDB,middleware.isLoggedIn
           );
 
-router.post('/',middleware.isLoggedInGen,upload.array(), function (req, res) {
+router.post('/',middleware.isLoggedInGen,function (req, res) {
     var url = req.body.imageUrl;
     User.findOneAndUpdate({someID:req.user.someID},{$push:{"images":{imageAdress:req.body.imageUrl, description: req.body.description, avatar:req.user.avatar} }}, {safe: true, upsert: true, new : true}, function(err, model) {
             if (err)  {console.log(err)}
@@ -91,7 +89,7 @@ router.get('/myPics',middleware.isLoggedInGen,middleware.getSpecificUserPhotos, 
     res.render('userMyPics');
 });
 
-router.post('/myPics',middleware.isLoggedInGen,upload.array(), function (req, res) {
+router.post('/myPics',middleware.isLoggedInGen,function (req, res) {
     var url = req.body.imageUrl;
     User.findOneAndUpdate({someID:req.user.someID},{$push:{"images":{imageAdress:req.body.imageUrl, description: req.body.description, avatar:req.user.avatar} }}, {safe: true, upsert: true, new : true}, function(err, model) {
             if (err)  {console.log(err)}
